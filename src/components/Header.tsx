@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({toggleForm}) => {
   return (
-    <div className='header-container'>
-      <button className='btn login-btn'>Login</button>
+    <div className='header-wrapper'>
+      <div className='header-container'>
+        <button onClick={() => {toggleForm(true)}} className='btn login-btn'>Login</button>
+      </div>
     </div>
   )
 }

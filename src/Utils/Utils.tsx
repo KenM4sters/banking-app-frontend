@@ -1,3 +1,12 @@
+export const nav_links = [
+    {
+        name: 'Home',
+    },
+    {
+        name: 'Account'
+    }
+]
+
 export const options = [
     {
         name: "Debit",
