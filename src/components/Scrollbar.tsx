@@ -16,7 +16,7 @@ const Scrollbar = () => {
 
   // getting the #root dom element to check its size and calulate the scroll counter as 
   // a percentage of this value.
-  const root = document?.querySelector('#root');
+  const root: HTMLElement = document?.querySelector('#root');
 
 
   // stopping the user from over scrolling if the scroll positions is either 0 or the height of the viewport

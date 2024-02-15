@@ -5,8 +5,8 @@ import gsap from "gsap";
 const Landing = () => {
   const [slogan, setSlogan] = useState("Awesome");
 
-  var sloganArray = ["Easy", "Simple", "Fast", "Helpful"];
-  var i = 0;
+  var sloganArray: Array<string> = ["Easy", "Simple", "Fast", "Helpful"];
+  var i: number = 0;
 
   const toggleSlogan = () => {
     gsap.to(".dynamic-slogan", {scale: 0});
