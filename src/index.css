@@ -50,7 +50,7 @@ h1 {
   position: relative;
   width: 100vw;
   height: 300vh;
-  background-image: linear-gradient(0deg, rgba(10, 10, 10, 0.9), 15%, rgb(15, 15, 15));
+  background-image: linear-gradient(0deg, rgba(10, 10, 10, 0.9), 15%, rgb(20, 20, 20));
   overflow: hidden;
 
 }
@@ -224,10 +224,14 @@ h1 {
 */
 
 .login-form {
-  position: absolute;
-  top: 10%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 30%;
   left: 37.5%;
   width: 20vw;
+  height: 35vh;
   margin: 0 auto;
   border-radius: 10px;
   padding: 5vh;
@@ -249,12 +253,30 @@ h1 {
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: calc(0.25rem + 2vh);
 }
 
 .input-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-button {
+  width: 5vw;
+  height: 4vh;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(38, 69, 122, 0.3);
+  cursor: pointer;
+  transition: all;
+  transition-duration: 0.5s;
+}
+
+.form-button:hover {
+  background-color: rgba(222, 30, 62, 0.96);
+  box-shadow: 0px 0px 10px rgba(222, 30, 62, 0.96);
+  color: rgba(235, 235, 235, 0.9);
 }
 
 .input-group input {
@@ -290,12 +312,36 @@ h1 {
 
 .landing-title {
   font-size: calc(2.0rem + 6vh);    
-  background-image: linear-gradient(225deg, #3c00ff, #ff0374);
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96));
   filter: drop-shadow(0 15px 30px #d900ff33);
   color: black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-box-decoration-break: clone;
+
+}
+
+.dynamic-slogan {
+  bottom: 10%;
+  position: relative;
+  font-size: calc(1.0rem + 2vh);
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96));
+  filter: drop-shadow(0 15px 30px #d900ff33);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+}
+
+.dynamic-slogan::after {
+  position: absolute;
+  content: "";
+  top: 35%;
+  left: -30%;
+  background-color: rgb(0, 0, 0);
+  width: 1.0vw;
+  height: 1.0vw;
+  border-radius: 25px;
 
 }
 
@@ -336,9 +382,9 @@ h1 {
   column-gap: 5vw;
   border-radius: 10px;
   padding: 5vh;
-  background: linear-gradient(rgb(26, 26, 26), rgb(27, 27, 27)) padding-box,
-              linear-gradient(to right, rgb(255, 0, 81), rgb(31, 0, 236)) border-box;
-  border: 2px solid transparent;
+  background: linear-gradient(rgb(16, 16, 16), rgba(25, 25, 25, 0.931)) padding-box,
+              linear-gradient(to right, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96)) border-box;
+  border: 1px solid transparent;
   box-shadow: 0px 0px 55px rgba(208, 0, 255, 0.3);
 }
 
@@ -351,8 +397,13 @@ h1 {
   flex-direction: row;
   text-decoration: none;
   border-radius: 7px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: all;
+  transition-duration: 0.5s;
+}
 
+.user-option:hover {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 20px rgba(235, 235, 235, 0.9);
 }
 
 .user-option-details {
@@ -378,6 +429,50 @@ h1 {
   margin: 0;
   padding: 0;
   color: rgba(23, 23, 23, 0.9);
+}
+
+/*
+  Getting Started
+*/
+
+.getting-started-wrapper {
+  margin-top: 40vh;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  place-items: center;
+}
+
+.getting-started-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(19, 19, 19, 0.9);
+  border-radius: 10px;
+  padding: 10vh;
+  box-shadow: 0px 0px 60px rgba(27, 27, 27, 0.9);
+}
+
+.getting-started-header {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  place-items: center;
+  font-size: calc(1.5rem + 7vh);
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96));
+  filter: drop-shadow(0 15px 30px #d900ff33);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+}
+
+.getting-started-list-item {
+  color: rgba(235, 235, 235, 0.9);
+  font-weight: 500;
+  list-style: none;
 }
 
 /*
@@ -424,7 +519,7 @@ h1 {
 
 .account-cards-navbar {
   margin-top: 20vh;
-  width: 56%;
+  width: 76%;
   padding-left: 2vw;
   padding-right: 2vw;
   height: 10vh;
@@ -433,7 +528,8 @@ h1 {
   justify-content: start;
   place-items: center;
   column-gap: 2vw;
-  background-color: rgba(30, 30, 30, 0.9);
+  background-color: rgba(255, 255, 255, 0.025);
+  border-radius: 10px;
 }
 
 .account-cards {
@@ -450,44 +546,165 @@ h1 {
 
 .account-overview {
   margin-top: 4vh;
-  width: 60%;
-  height: 35vh;
+  width: 80%;
+  height: 75vh;
   display: flex;
   flex-direction: row;
   justify-content: start;
   place-items: center;
   column-gap: 10vw;
-  background-color: white;
+  background-color: rgba(12, 12, 12, 0.63);
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px rgba(39, 39, 39, 0.653);
 }
 
 .account-options-list {
-  width: 20vw;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  place-items: center;
+  row-gap: 5vh;
+  color: rgba(235, 235, 235, 0.9);
+}
+
+.account-option-container {
+  height: 30vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  row-gap: 5vh;
+  margin-left: 10vw;
+}
+
+.account-options-header {
+  font-size: calc(1.0rem + 1vh);
+  padding: 0;
+  margin-bottom: 3vh;
+}
+
+.account-option-type {
+  font-size: calc(0.5rem + 1vh);
+  font-weight: 500;
+}
+
+.account-options-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   place-items: center;
-  row-gap: 2vh;
+  column-gap: 10vw;
+}
+
+.account-options-input {
+  width: 15vw;
+  height: 3vh;
+}
+
+.account-options-submit-btn-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  place-items: center;
+}
+
+.account-options-submit-btn {
+  cursor: pointer;
+  width: 5vw;
+  height: 3.5vh;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  background-color: rgba(19, 19, 19, 0.9);
+  box-shadow: 0px 0px 10px rgba(200, 200, 200, 0.1);
+  color: rgba(245, 245, 245, 0.9);
+  transition: all;
+  transition-duration: 0.75s;
+}
+
+.debit-btn:hover {
+  background-color: rgba(0, 255, 225, 0.96) ;
+  box-shadow: 0px 0px 10px rgba(0, 255, 225, 0.96);
+}
+
+.credit-btn:hover {
+  background-color: rgba(255, 0, 60, 0.96);
+  box-shadow: 0px 0px 10px rgba(255, 0, 60, 0.96);
+}
+
+.debit {
+  position: relative;
+  background-image: linear-gradient(225deg, rgba(0, 191, 255, 0.96), rgba(30, 222, 129, 0.96));
+  filter: drop-shadow(0 15px 30px #00ffbb60);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+}
+
+.debit::after {
+  position: absolute;
+  content: '';
+  background-color: white;
+  width: 30vw;
+  height: 2px;
+  top: 750%;
+  left: 0;
+}
+
+.credit {
+  background-image: linear-gradient(225deg, rgba(0, 34, 255, 0.96), rgba(222, 30, 30, 0.96));
+  filter: drop-shadow(0 15px 30px #ff002b75);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+}
+
+.account-card-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  place-items: center;
+  width: 50vw;
 }
 
 .account-card-details {
-  width: 20vw;
+  width: 5vw;
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   place-items: center;
   row-gap: 1vh;
+  color: rgba(235, 235, 235, 0.9);
 
 }
 .account-card-details-header{
-  font-size: calc(0.5rem + 2.0vh);
-  font-weight: 700;
-  width: 20vw;
+  position: relative;
+  font-size: calc(0.5rem + 0.5vh);
+  font-weight: 300;
   height: 1vh;
+  width: 20vw;
   display: flex;
   justify-content: start;
   place-items: center;
-  color: rgba(23, 23, 23, 0.9);
+  text-align: left;
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.account-card-details-header::after {
+  content: "";
+  width: 1px;
+  height: 400%;
+  position: absolute;
+  left: 35%;
+  background-color: white;
+}
+
+.account-card-values {
+  margin-bottom: 2vh;
 }
 
 .transaction-history {

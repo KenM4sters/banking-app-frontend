@@ -12,7 +12,7 @@ const UserOptions = () => {
 
   return (
     <div className='user-options-wrapper'>
-      <h3 className='user-options-title'>Select an option</h3>
+      <h3 className='user-options-title'>Quick links</h3>
       <ul className='user-options-container'>
         {options.map((data, index) => (
           <a key={index} href={data.link} className='user-option'>

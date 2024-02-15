@@ -9,6 +9,8 @@ import Navbar from './components/Navbar'
 import { useGSAP } from '@gsap/react'
 import gsap from "gsap";
 import Account from './components/Account'
+import About from './components/About'
+import Landing from './components/Landing'
 
 
 const App = () => {
@@ -133,16 +135,9 @@ const App = () => {
         <Account data={data} />
         <div className='main-container'>
           <Header toggleForm={toggleForm}  />
-          <section className='landing-wrapper'>
-            <div className='landing-container'>
-              <h1 className='landing-title'>BANKING APP</h1>
-              <p className='landing-para'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit cupiditate, est amet quaerat molestias nihil pariatur ab? Ullam neque inventore et 
-                libero voluptatibus enim, recusandae a maiores voluptatum fugiat incidunt.
-              </p>
-            </div>
-          </section>
+          <Landing />
           <UserOptions />
+          <About />
           <div className='footer-wrapper'>
             <Footer />
           </div>
@@ -160,7 +155,7 @@ const App = () => {
                   <label>Password:</label>
                   <input type="password" id="password" name="password" required value={formValues.password} onChange={updateFormValues} />
               </div>
-              <button type="submit">Login</button>
+              <button type="submit" className='form-button'>Login</button>
           </form>
         </div>
       </main>

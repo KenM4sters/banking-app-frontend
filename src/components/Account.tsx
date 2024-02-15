@@ -4,6 +4,13 @@ const Account = ({ data }) => {
   const [activeCard, setActiveCard] = useState({});
   const [activeCardColors, setActiveCardColors] = useState([{}]);
   const [activeColorIndex, setActiveColorIndex] = useState(0);
+
+  var refsArray = [];
+
+  for( let i = 0; i < 10; i++) {
+    var ref = useRef()
+    refsArray[i] = ref;
+  }
   
   useEffect(() => {
     setActiveCardColors([
@@ -15,17 +22,15 @@ const Account = ({ data }) => {
         backgroundColor: "#9ad3fd",
         boxShadow: "0px 0px 10px #9ad3fd",
       },
-      {
-        backgroundColor: "#9ad3fd",
-        boxShadow: "0px 0px 10px #9ad3fd",
-      },
-      {
-        backgroundColor: "#9ad3fd",
-        boxShadow: "0px 0px 10px #9ad3fd",
-      },
     ]);
   }, []);
 
+  const toggleActiveColor = (index) => {
+    refsArray[index].current.style = activeCardColors[0];
+    console.log(refsArray[index].current.style);
+    
+  }
+  
 
   return (
     <div className="account-view-wrapper">
@@ -42,11 +47,11 @@ const Account = ({ data }) => {
         {data?.content?.map((data, index: number) => (
           <span
             onClick={() => {
-              toggleActiveCard(10);
+              toggleActiveColor(index);
             }}
             className="account-cards"
             key={index}
-            style={activeCardColors[index]}
+            ref={refsArray[index]}
           >
             Card [{index}]
           </span>
@@ -54,15 +59,38 @@ const Account = ({ data }) => {
       </div>
       <div className="account-overview">
         <form className="account-options-list">
-          <input />
-          <input />
-          <input />
-          <input />
+          <div className="account-option-container">
+            <h3 className="account-options-header debit"> Debit</h3>
+            <div className="account-options-input-container">
+              <span className="account-option-type">Amount</span>
+              <input className="account-options-input" placeholder="0.00"  /> 
+            </div>
+            <div className="account-options-submit-btn-container">
+              <button className="account-options-submit-btn debit-btn">Submit </button>
+            </div>
+          </div>
+          <div className="account-option-container">
+            <h3 className="account-options-header credit"> Credit</h3>
+            <div className="account-options-input-container">
+              <span className="account-option-type">Amount</span>
+              <input className="account-options-input" placeholder="0.00"  /> 
+            </div>
+            <div className="account-options-submit-btn-container">
+              <button className="account-options-submit-btn credit-btn">Submit </button>
+            </div>
+          </div>
         </form>
-        <div className="account-card-details">
-          <h3 className="account-card-details-header">Card Number</h3>
-          <h3 className="account-card-details-header"> Card Name</h3>
-          <h3 className="account-card-details-header"> Balance </h3>
+        <div className="account-card-info">
+          <div className="account-card-details">
+            <h3 className="account-card-details-header"> Card Number</h3>
+            <h3 className="account-card-details-header"> Card Name</h3>
+            <h3 className="account-card-details-header"> Balance </h3>
+          </div>
+          <div className="account-card-values">
+            <h1 className="account-card-details-value"> [NUMBER] </h1>
+            <h1 className="account-card-details-value"> [NAME] </h1>
+            <h1 className="account-card-details-value"> [BALANCE] </h1>
+          </div>
         </div>
       </div>
       <div className="transaction-history">
