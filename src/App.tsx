@@ -6,6 +6,9 @@ import UserOptions from './components/UserOptions'
 import { XCircleIcon } from '@heroicons/react/16/solid'
 import { getGames } from './components/api/Mappings'
 import Navbar from './components/Navbar'
+import { useGSAP } from '@gsap/react'
+import gsap from "gsap";
+import Account from './components/Account'
 
 
 const App = () => {
@@ -14,6 +17,7 @@ const App = () => {
   const homeButton: HTMLElement = document?.querySelector('.home-link');
   const accountButton: HTMLElement = document?.querySelector('.account-link');
   const [homeInView, setHomeInView] = useState(true);
+  const [homeInPreviousView, setHomeInPreviousView] = useState(true);
   const [formState, setFormstate] = useState(false);
   const [userEnabled, setUserEnabled] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -24,9 +28,8 @@ const App = () => {
 
   // Set the form and homeInView states on the first render.
   useEffect(() => {
-    setFormstate(true);
-    setHomeInView(true);
-  })
+    setFormstate(true);    
+  }, [])
 
   // As the user is filling out the form, we need to update the formValues which
   // will eventually be passed to the POST request to set up a user account.
@@ -82,29 +85,52 @@ const App = () => {
 
   // Adding an removing active/inactive classes when this funciton is called.
   // Those classes add different styling properties to indicatie whether it's active or not.
-  const toggleHomeInView = (inView: boolean) => {
-    if(inView) {
+  const toggleHomeInView = (lookToHome: boolean) => {
+    if(lookToHome) {
       homeButton?.classList.add('active');
       homeButton?.classList.remove('inactive');
       accountButton?.classList.remove('active');
       accountButton?.classList.add('inactive');
+      console.log(homeInView, homeInPreviousView);
+      homeInPreviousView == true && homeInView == true ? null : moveMainContainer(false);
     } 
-    else if(!inView && userEnabled){
+    else if(!lookToHome && userEnabled){
       accountButton?.classList.add('active');
       accountButton?.classList.remove('inactive');
       homeButton?.classList.remove('active');
       homeButton?.classList.add('inactive');
+      console.log(homeInView, homeInPreviousView);
+      
+      homeInView == true ? moveMainContainer(true) : null;
     }
   }
 
+
+  const moveMainContainer = (left: boolean) => {
+      if(left) {
+        setHomeInPreviousView(homeInView);
+        gsap.to('.main-container', {x: -1600});
+        gsap.to('.account-view-wrapper', {x: -1600});
+        console.log('moving left');
+        setHomeInView(false);
+        
+      } else if(!left) {
+        setHomeInPreviousView(homeInView);
+        gsap.to('.main-container', {x: 0});
+        gsap.to('.account-view-wrapper', {x: 0});
+        console.log('moving right');
+        setHomeInView(true);
+      }
+  }
 
   return (
     <>
       <main className='main-wrapper'>
         <Scrollbar />
+        <Navbar toggleView={toggleHomeInView} />
+        <Account />
         <div className='main-container'>
-          <Header toggleForm={toggleForm} />
-          <Navbar toggleView={toggleHomeInView} />
+          <Header toggleForm={toggleForm}  />
           <section className='landing-wrapper'>
             <div className='landing-container'>
               <h1 className='landing-title'>BANKING APP</h1>
