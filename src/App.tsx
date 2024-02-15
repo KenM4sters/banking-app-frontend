@@ -19,6 +19,7 @@ const App = () => {
   const [homeInView, setHomeInView] = useState(true);
   const [homeInPreviousView, setHomeInPreviousView] = useState(true);
   const [formState, setFormstate] = useState(false);
+  const [data, setData] = useState({});
   const [userEnabled, setUserEnabled] = useState(false);
   const [formValues, setFormValues] = useState({
     username: "",
@@ -46,6 +47,7 @@ const App = () => {
       // get the data from the GET request.
       const {data} = await getGames({page: 0, size: 4})      
       data?.content ? setUserEnabled(true) : null; 
+      setData(data);
       toggleForm(false);
       
     } catch (e) {
@@ -110,14 +112,14 @@ const App = () => {
       if(left) {
         setHomeInPreviousView(homeInView);
         gsap.to('.main-container', {x: -1600});
-        gsap.to('.account-view-wrapper', {x: -1600});
+        gsap.to('.account-view-wrapper', {x: 0});
         console.log('moving left');
         setHomeInView(false);
         
       } else if(!left) {
         setHomeInPreviousView(homeInView);
         gsap.to('.main-container', {x: 0});
-        gsap.to('.account-view-wrapper', {x: 0});
+        gsap.to('.account-view-wrapper', {x: 1512});
         console.log('moving right');
         setHomeInView(true);
       }
@@ -128,7 +130,7 @@ const App = () => {
       <main className='main-wrapper'>
         <Scrollbar />
         <Navbar toggleView={toggleHomeInView} />
-        <Account />
+        <Account data={data} />
         <div className='main-container'>
           <Header toggleForm={toggleForm}  />
           <section className='landing-wrapper'>

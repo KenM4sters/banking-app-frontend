@@ -91,12 +91,14 @@ h1 {
 */
 
 .nav-link-wrapper {
+  position: fixed;
   width: 100%;
   height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   place-items: center;
+  z-index: 10;
 }
 
 .nav-link-container {
@@ -108,6 +110,7 @@ h1 {
   place-items: center;
   padding: 0.4vw;
   column-gap: 2vw;
+  background-color: rgba(101, 127, 151, 0.653);
 
 }
 
@@ -218,7 +221,7 @@ h1 {
 
 .login-form {
   position: absolute;
-  top: 25%;
+  top: 10%;
   left: 37.5%;
   width: 20vw;
   margin: 0 auto;
@@ -382,25 +385,116 @@ h1 {
   top: 10%;
   left: 0%;
   width: 100%;
-  height: 50vh;
+  height: 300vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   place-items: center;
+  transform: translateX(100vw);
 }
 
 .account-view-container {
   width: 60%;
-  height: 100%;
+  height: 15%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   place-items: center;
-  background-color: #3c00ff;
+  background-color: #1b1b1bf0;
   border-radius: 10px;
-  transform: translateX(100vw);
 }
 
+.account-view-header {
+  color: rgb(240, 240, 240);
+  font-size: calc(0.5rem + 6vh);
+  font-weight: 600;
+}
+
+.account-view-para {
+  color: rgba(235, 235, 235, 0.9);
+  font-weight: 600;
+  font-size: calc(0.5rem + 1.0vh);
+  text-align: center;
+  width: 50vw;
+}
+
+.account-cards-navbar {
+  margin-top: 20vh;
+  width: 56%;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  place-items: center;
+  column-gap: 2vw;
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+.account-cards {
+  width: 8vw;
+  height: 4vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  border-radius: 15px;
+  background-color: rgba(101, 127, 151, 0.653);
+}
+
+.account-overview {
+  margin-top: 4vh;
+  width: 60%;
+  height: 35vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  place-items: center;
+  column-gap: 10vw;
+  background-color: white;
+}
+
+.account-options-list {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  row-gap: 2vh;
+}
+
+.account-card-details {
+  width: 20vw;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+  row-gap: 1vh;
+
+}
+.account-card-details-header{
+  font-size: calc(0.5rem + 2.0vh);
+  font-weight: 700;
+  width: 20vw;
+  height: 1vh;
+  display: flex;
+  justify-content: start;
+  place-items: center;
+  color: rgba(23, 23, 23, 0.9);
+}
+
+.transaction-history {
+  margin-top: 5vh;
+  width: 60%;
+  height: 40vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  place-items: center;
+  background-color: rgba(235, 235, 235, 0.9)
+}
 
 
 
