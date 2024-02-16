@@ -23,6 +23,7 @@ const Account = ({ data }) => {
         boxShadow: "0px 0px 10px #9ad3fd",
       },
     ]);
+    
   }, []);
 
   const toggleActiveColor = (index) => {
@@ -44,18 +45,9 @@ const Account = ({ data }) => {
         </p>
       </div>
       <div className="account-cards-navbar">
-        {data?.content?.map((data, index: number) => (
-          <span
-            onClick={() => {
-              toggleActiveColor(index);
-            }}
-            className="account-cards"
-            key={index}
-            ref={refsArray[index]}
-          >
-            Card [{index}]
-          </span>
-        ))}
+        <span className="account-cards">
+          Card 1
+        </span>
       </div>
       <div className="account-overview">
         <form className="account-options-list">
@@ -87,9 +79,9 @@ const Account = ({ data }) => {
             <h3 className="account-card-details-header"> Balance </h3>
           </div>
           <div className="account-card-values">
-            <h1 className="account-card-details-value"> [NUMBER] </h1>
-            <h1 className="account-card-details-value"> [NAME] </h1>
-            <h1 className="account-card-details-value"> [BALANCE] </h1>
+            <h1 className="account-card-details-value"> {data.cardNumber}</h1>
+            <h1 className="account-card-details-value"> {data.email} </h1>
+            <h1 className="account-card-details-value"> {data.cardBalance} </h1>
           </div>
         </div>
       </div>

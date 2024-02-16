@@ -12,6 +12,7 @@ import Account from './components/Account'
 import About from './components/About'
 import Landing from './components/Landing'
 import { User } from './Utils/types'
+import { toastInfo, toastSuccess } from './Utils/Toast'
 
 
 const App = () => {
@@ -25,8 +26,10 @@ const App = () => {
   const [data, setData] = useState({} as User);
   const [userEnabled, setUserEnabled] = useState(false);
   const [formValues, setFormValues] = useState({
+    name: "",
     email: "",
-    password: ""
+    password: "",
+    cardBalance: 0
   } as User);
 
   // Set the form and homeInView states on the first render.
@@ -47,14 +50,20 @@ const App = () => {
     e.preventDefault();
     try {      
       const userDetails = await loginUser(formValues);
-      if(userDetails.data.length == 0) {
-        const res = await saveUser(formValues);
-        console.log('created user');
-      }
-      userDetails.data.enable == true ? setUserEnabled(true) : setUserEnabled(false);
       console.log(userDetails);
-      setData(userDetails.data);
-      toggleForm(false);
+      if(typeof userDetails.data == 'string') {
+        const res = await saveUser(formValues);
+        console.log(res);
+        toastSuccess('user created! Please Verify your account and return to login.');
+        toggleForm(false);
+      } else {
+        userDetails.data.enable == true ? setUserEnabled(true) : setUserEnabled(false);
+        setData(userDetails.data);
+        toggleForm(false);
+        toastInfo('user logged in');
+        console.log('logged in');
+      }
+      
     } catch (e) {
       console.log(e); 
     }
@@ -98,7 +107,6 @@ const App = () => {
       homeButton?.classList.remove('inactive');
       accountButton?.classList.remove('active');
       accountButton?.classList.add('inactive');
-      console.log(homeInView, homeInPreviousView);
       homeInPreviousView == true && homeInView == true ? null : moveMainContainer(false);
     } 
     else if(!lookToHome && userEnabled){
@@ -106,7 +114,6 @@ const App = () => {
       accountButton?.classList.remove('inactive');
       homeButton?.classList.remove('active');
       homeButton?.classList.add('inactive');
-      console.log(homeInView, homeInPreviousView);
       
       homeInView == true ? moveMainContainer(true) : null;
     }
@@ -118,14 +125,12 @@ const App = () => {
         setHomeInPreviousView(homeInView);
         gsap.to('.main-container', {x: -1600});
         gsap.to('.account-view-wrapper', {x: 0});
-        console.log('moving left');
         setHomeInView(false);
         
       } else if(!left) {
         setHomeInPreviousView(homeInView);
         gsap.to('.main-container', {x: 0});
         gsap.to('.account-view-wrapper', {x: 1512});
-        console.log('moving right');
         setHomeInView(true);
       }
   }
@@ -151,14 +156,19 @@ const App = () => {
               <XCircleIcon style={{cursor: 'pointer'}} onClick={() => {toggleForm(false)}} width={20} height={20}/>
               <h2>Login</h2>
               <div className="input-group">
+                  <label>Name:</label>
+                  <input type="text" id="name" name="name" required value={formValues.name} onChange={updateFormValues} />
+              </div>
+              <div className="input-group">
                   <label>Email:</label>
-                  <input type="text" id="email" name="email" required value={formValues.email} onChange={updateFormValues} />
+                  <input type="email" id="email" name="email" required value={formValues.email} onChange={updateFormValues} />
               </div>
               <div className="input-group">
                   <label>Password:</label>
                   <input type="password" id="password" name="password" required value={formValues.password} onChange={updateFormValues} />
               </div>
               <button type="submit" className='form-button'>Login</button>
+              <p>**If no user exists with the sumbitted email adress, we'll create an account for you.</p>
           </form>
         </div>
       </main>
