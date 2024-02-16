@@ -53,14 +53,10 @@ export const options = [
 export const quick_links = [
     {
         name: "Account",
-        link: "#",
-    },
-    {
-        name: "Contact",
-        link: "#",
+        link: "/",
     },
     {
         name: "Home",
-        link: "#",
+        link: "/",
     },
 ]

@@ -37,10 +37,10 @@ const Account = ({ data, updateUserBalance }) => {
       <div className="account-view-container">
         <h3 className="account-view-header"> Account View </h3>
         <p className="account-view-para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi a
-          rerum tenetur sapiente accusantium quam dignissimos modi ullam facere
-          adipisci commodi provident pariatur ex totam neque quibusdam, quos
-          cupiditate! Voluptatem!
+          Everything that you'll ever need to know about your account can be found here.
+          Simply scroll down, select the card that wish to make a transaction to, and fill
+          the appropraite fields with your desired amounts. Click the submit button, and watch
+          your balance be adjusted in real-time!
         </p>
       </div>
       <div className="account-cards-navbar">  
