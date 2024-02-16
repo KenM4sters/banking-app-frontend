@@ -393,7 +393,7 @@ h1 {
   column-gap: 5vw;
   border-radius: 10px;
   padding: 5vh;
-  background-image: linear-gradient(0deg, rgba(219, 219, 219, 0.9), 50%, rgb(240, 240, 240));
+  background-image: linear-gradient(0deg, rgba(10, 10, 10, 0.115), 50%, rgba(20, 20, 20, 0.396));
   /* background: linear-gradient(rgb(16, 16, 16), rgba(25, 25, 25, 0.931)) padding-box,
               linear-gradient(to right, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96)) border-box;
   border: 1px solid transparent; */
@@ -404,7 +404,7 @@ h1 {
   width: 13vw;
   height: 14vh;
   padding: 1vh;
-  background-color: rgba(255, 255, 255, 0.945);
+  background-color: rgba(230, 230, 230, 0.945);
   display: flex;
   flex-direction: row;
   text-decoration: none;
@@ -412,7 +412,7 @@ h1 {
   transition: all;
   transition-duration: 0.5s;
   cursor: pointer;
-  box-shadow: 5px 5px 10px rgba(148, 148, 148, 0.5);
+  box-shadow: 1px 1px 10px rgba(185, 185, 185, 0.5);
 }
 
 .user-option:hover {

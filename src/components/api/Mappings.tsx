@@ -15,3 +15,7 @@ export async function saveUser(user: User) {
 export async function loginUser(user: User) {
     return await axios.get(`${email_url}/user?email=${user.email}&password=${user.password}`);
 }
+
+export async function updateUser(email: string, transactionValue: number) {
+    return await axios.put(`${email_url}?email=${email}&transactionValue=${transactionValue}`);
+}

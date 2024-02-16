@@ -1,37 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
+import { User } from "../Utils/types";
 
-const Account = ({ data }) => {
-  const [activeCard, setActiveCard] = useState({});
-  const [activeCardColors, setActiveCardColors] = useState([{}]);
-  const [activeColorIndex, setActiveColorIndex] = useState(0);
+const Account = ({ data, updateUserBalance }) => {
 
-  var refsArray = [];
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    cardBalance: 0
+  } as User);
 
-  for( let i = 0; i < 10; i++) {
-    var ref = useRef()
-    refsArray[i] = ref;
+  const [transactionBuffer, setTransactionBuffer] = useState({
+    debit: 0,
+    credit: 0
+  });
+
+  const updateTransactionBuffer = (e):void => {
+    setTransactionBuffer({ ...transactionBuffer, [e.target.name]: e.target.value});
+  }
+
+  const updateFormValues = (e):void => {
+    e.preventDefault();
+    updateUserBalance(data.email, transactionBuffer.debit + (-1*transactionBuffer.credit))
   }
   
   useEffect(() => {
-    setActiveCardColors([
-      {
-        backgroundColor: "#f60a4d",
-        boxShadow: "0px 0px 10px #f60a4d",
-      },
-      {
-        backgroundColor: "#9ad3fd",
-        boxShadow: "0px 0px 10px #9ad3fd",
-      },
-    ]);
+    setFormValues(data);
+    console.log(formValues);
     
-  }, []);
-
-  const toggleActiveColor = (index) => {
-    refsArray[index].current.style = activeCardColors[0];
-    console.log(refsArray[index].current.style);
-    
-  }
-  
+  }, []);  
 
   return (
     <div className="account-view-wrapper">
@@ -44,31 +41,31 @@ const Account = ({ data }) => {
           cupiditate! Voluptatem!
         </p>
       </div>
-      <div className="account-cards-navbar">
+      <div className="account-cards-navbar">  
         <span className="account-cards">
           Card 1
         </span>
       </div>
       <div className="account-overview">
-        <form className="account-options-list">
+        <form className="account-options-list" onSubmit={updateFormValues}>
           <div className="account-option-container">
             <h3 className="account-options-header debit"> Debit</h3>
             <div className="account-options-input-container">
               <span className="account-option-type">Amount</span>
-              <input className="account-options-input" placeholder="0.00"  /> 
+              <input className="account-options-input" placeholder="0.00" name="debit" id="debit" value={transactionBuffer.debit} onChange={updateTransactionBuffer}  /> 
             </div>
             <div className="account-options-submit-btn-container">
-              <button className="account-options-submit-btn debit-btn">Submit </button>
+              <button className="account-options-submit-btn debit-btn" type="submit">Submit </button>
             </div>
           </div>
           <div className="account-option-container">
             <h3 className="account-options-header credit"> Credit</h3>
             <div className="account-options-input-container">
               <span className="account-option-type">Amount</span>
-              <input className="account-options-input" placeholder="0.00"  /> 
+              <input className="account-options-input" name="credit" id="credit" value={transactionBuffer.credit} placeholder="0.00" onChange={updateTransactionBuffer}  /> 
             </div>
             <div className="account-options-submit-btn-container">
-              <button className="account-options-submit-btn credit-btn">Submit </button>
+              <button className="account-options-submit-btn credit-btn" type="submit"> Submit </button>
             </div>
           </div>
         </form>
@@ -79,7 +76,7 @@ const Account = ({ data }) => {
             <h3 className="account-card-details-header"> Balance </h3>
           </div>
           <div className="account-card-values">
-            <h1 className="account-card-details-value"> {data.cardNumber}</h1>
+            <h1 className="account-card-details-value" > {data.cardNumber}</h1>
             <h1 className="account-card-details-value"> {data.name} </h1>
             <h1 className="account-card-details-value"> {data.cardBalance} </h1>
           </div>

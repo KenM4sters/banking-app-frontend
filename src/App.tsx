@@ -1,18 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Scrollbar from './components/Scrollbar'
 import UserOptions from './components/UserOptions'
 import { XCircleIcon } from '@heroicons/react/16/solid'
-import { getGames, loginUser, saveUser } from './components/api/Mappings'
+import { loginUser, saveUser, updateUser } from './components/api/Mappings'
 import Navbar from './components/Navbar'
-import { useGSAP } from '@gsap/react'
-import gsap from "gsap";
+import gsap from "gsap"
 import Account from './components/Account'
 import About from './components/About'
 import Landing from './components/Landing'
 import { User } from './Utils/types'
 import { toastInfo, toastSuccess } from './Utils/Toast'
+import { AxiosResponse } from 'axios'
 
 
 const App = () => {
@@ -144,13 +144,21 @@ const App = () => {
     setUserEnabled(false);   
   }
 
+  const updateUserBalance = async(email: string, transactionValue: number): Promise<void> => {
+    const updatedUser: AxiosResponse = await updateUser(email, transactionValue);
+    console.log("updated user: " + updatedUser);
+    
+    setData(updatedUser.data);
+    toastSuccess('User updated!');
+  }
+
   return (
     <>
       <main className='main-wrapper'>
         <Scrollbar />
         <Navbar toggleView={toggleHomeInView} />
         <Header toggleView={toggleHomeInView} toggleForm={toggleForm} userEnabled={userEnabled} resetUser={resetUser}/>
-        <Account data={data} />
+        <Account data={data} updateUserBalance={updateUserBalance} />
         <div className='main-container'>
           <Landing />
           <UserOptions toggleView={toggleHomeInView} />
