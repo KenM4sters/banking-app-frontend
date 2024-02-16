@@ -4,7 +4,7 @@ import { CreditCardIcon } from '@heroicons/react/16/solid'
 import gsap from "gsap"
 import { useGSAP } from '@gsap/react'
 
-const UserOptions = () => {
+const UserOptions = ({toggleView}) => {
 
   useGSAP(() => {
     gsap.to(".main-container", {x: 0});
@@ -15,7 +15,7 @@ const UserOptions = () => {
       <h3 className='user-options-title'>Quick links</h3>
       <ul className='user-options-container'>
         {options.map((data, index) => (
-          <a key={index} href={data.link} className='user-option'>
+          <div key={index} onClick={() => {toggleView(false)}} className='user-option'>
             <div className='user-option-details'>
               <h3>{data.name}</h3>
               <p>{data.description}</p>
@@ -23,7 +23,7 @@ const UserOptions = () => {
             <span className='user-options-icon-container'>
               <CreditCardIcon width={50} height={50} color='black'/>  
             </span>
-          </a>
+          </div>
         ))}
       </ul>
     </div>

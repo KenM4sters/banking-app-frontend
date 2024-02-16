@@ -1,10 +1,11 @@
 import React from 'react'
+import { UserCircleIcon } from '@heroicons/react/16/solid'
 
-const Header = ({toggleForm}) => {
+const Header = ({toggleForm, userEnabled}) => {
   return (
     <div className='header-wrapper'>
       <div className='header-container'>
-        <button onClick={() => {toggleForm(true)}} className='btn login-btn'>Login</button>
+        {userEnabled ? <UserCircleIcon  className='user-icon' /> : <button onClick={() => {toggleForm(true)}} className='btn login-btn'>Login</button> } 
       </div>
     </div>
   )

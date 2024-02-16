@@ -1,7 +1,17 @@
 import axios from "axios";
+import { User } from "../../Utils/types";
 
 const api_url = "http://localhost:8080/games";
+const email_url = "http://localhost:8080/api/users"
 
 export async function getGames({page = 0, size = 10}) {
-    return await axios.get(`${api_url}?page=${page}&size=${size}`)
+    return await axios.get(`${api_url}?page=${page}&size=${size}`);
+}
+
+export async function saveUser(user: User) {
+    return await axios.post(email_url, user);
+}
+
+export async function loginUser(user: User) {
+    return await axios.get(`${email_url}/user?email=${user.email}&password=${user.password}`);
 }

@@ -4,13 +4,14 @@ import Footer from './components/Footer'
 import Scrollbar from './components/Scrollbar'
 import UserOptions from './components/UserOptions'
 import { XCircleIcon } from '@heroicons/react/16/solid'
-import { getGames } from './components/api/Mappings'
+import { getGames, loginUser, saveUser } from './components/api/Mappings'
 import Navbar from './components/Navbar'
 import { useGSAP } from '@gsap/react'
 import gsap from "gsap";
 import Account from './components/Account'
 import About from './components/About'
 import Landing from './components/Landing'
+import { User } from './Utils/types'
 
 
 const App = () => {
@@ -21,13 +22,12 @@ const App = () => {
   const [homeInView, setHomeInView] = useState(true);
   const [homeInPreviousView, setHomeInPreviousView] = useState(true);
   const [formState, setFormstate] = useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({} as User);
   const [userEnabled, setUserEnabled] = useState(false);
   const [formValues, setFormValues] = useState({
-    username: "",
-    name: "",
+    email: "",
     password: ""
-  });
+  } as User);
 
   // Set the form and homeInView states on the first render.
   useEffect(() => {
@@ -45,13 +45,16 @@ const App = () => {
   // Currently returns a list of game titles
   const handleLogin = async (e):Promise<void> => {
     e.preventDefault();
-    try {
-      // get the data from the GET request.
-      const {data} = await getGames({page: 0, size: 4})      
-      data?.content ? setUserEnabled(true) : null; 
-      setData(data);
+    try {      
+      const userDetails = await loginUser(formValues);
+      if(userDetails.data.length == 0) {
+        const res = await saveUser(formValues);
+        console.log('created user');
+      }
+      userDetails.data.enable == true ? setUserEnabled(true) : setUserEnabled(false);
+      console.log(userDetails);
+      setData(userDetails.data);
       toggleForm(false);
-      
     } catch (e) {
       console.log(e); 
     }
@@ -134,9 +137,9 @@ const App = () => {
         <Navbar toggleView={toggleHomeInView} />
         <Account data={data} />
         <div className='main-container'>
-          <Header toggleForm={toggleForm}  />
+          <Header toggleForm={toggleForm} userEnabled={userEnabled} />
           <Landing />
-          <UserOptions />
+          <UserOptions toggleView={toggleHomeInView} />
           <About />
           <div className='footer-wrapper'>
             <Footer />
@@ -148,8 +151,8 @@ const App = () => {
               <XCircleIcon style={{cursor: 'pointer'}} onClick={() => {toggleForm(false)}} width={20} height={20}/>
               <h2>Login</h2>
               <div className="input-group">
-                  <label>Username:</label>
-                  <input type="text" id="username" name="username" required value={formValues.username} onChange={updateFormValues} />
+                  <label>Email:</label>
+                  <input type="text" id="email" name="email" required value={formValues.email} onChange={updateFormValues} />
               </div>
               <div className="input-group">
                   <label>Password:</label>

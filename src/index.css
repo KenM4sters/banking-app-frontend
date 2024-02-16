@@ -80,6 +80,12 @@ h1 {
   transition-duration: 0.3s;
 }
 
+.user-icon {
+  width: 2vw;
+  height: 2vw;
+  color: rgb(53, 122, 219);
+}
+
 .login-btn:hover {
   color: black;
   background-color: rgba(230, 230, 230, 1.0);
@@ -112,7 +118,7 @@ h1 {
   place-items: center;
   padding: 0.4vw;
   column-gap: 2vw;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(27, 27, 27);
 
 }
 
@@ -236,16 +242,16 @@ h1 {
   border-radius: 10px;
   padding: 5vh;
   background-color: white;
+  transition: all;
+  transition-duration: 0.2s;
 }
 
 .display-form {
-  animation: fadeInScaleAnimation ease-in-out 0.2s;
-  visibility: visible;
+  transform: scale(1);
 }
 
 .close-form {
-  animation: fadeInScaleAnimation reverse 0.2s;
-  visibility: hidden;
+  transform: scale(0);
 }
 
 .login-form h2 {
@@ -269,13 +275,11 @@ h1 {
   border: none;
   background-color: rgba(38, 69, 122, 0.3);
   cursor: pointer;
-  transition: all;
-  transition-duration: 0.5s;
 }
 
 .form-button:hover {
-  background-color: rgba(222, 30, 62, 0.96);
-  box-shadow: 0px 0px 10px rgba(222, 30, 62, 0.96);
+  background-color: rgba(30, 107, 222, 0.96);
+  box-shadow: 0px 0px 10px rgba(30, 158, 222, 0.96);
   color: rgba(235, 235, 235, 0.9);
 }
 
@@ -312,8 +316,8 @@ h1 {
 
 .landing-title {
   font-size: calc(2.0rem + 6vh);    
-  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96));
-  filter: drop-shadow(0 15px 30px #d900ff33);
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), 25%, rgba(222, 30, 30, 0.96));
+  filter: drop-shadow(0 15px 30px #ff003733);
   color: black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -382,10 +386,11 @@ h1 {
   column-gap: 5vw;
   border-radius: 10px;
   padding: 5vh;
-  background: linear-gradient(rgb(16, 16, 16), rgba(25, 25, 25, 0.931)) padding-box,
+  background-image: linear-gradient(0deg, rgba(219, 219, 219, 0.9), 50%, rgb(240, 240, 240));
+  /* background: linear-gradient(rgb(16, 16, 16), rgba(25, 25, 25, 0.931)) padding-box,
               linear-gradient(to right, rgba(0, 98, 255, 0.96), rgba(222, 30, 62, 0.96)) border-box;
-  border: 1px solid transparent;
-  box-shadow: 0px 0px 55px rgba(208, 0, 255, 0.3);
+  border: 1px solid transparent; */
+  box-shadow: 0px 0px 35px rgba(41, 41, 41, 0.3); 
 }
 
 .user-option {
@@ -399,6 +404,8 @@ h1 {
   border-radius: 7px;
   transition: all;
   transition-duration: 0.5s;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(148, 148, 148, 0.5);
 }
 
 .user-option:hover {
@@ -522,13 +529,14 @@ h1 {
   place-items: center;
   background-color: #1b1b1bf0;
   border-radius: 10px;
+  box-shadow: 0px 0px 40px rgba(42, 42, 42, 0.863);
 }
 
 .account-view-header {
   font-size: calc(0.5rem + 6vh);
   font-weight: 600;
   background-image: linear-gradient(225deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.96));
-  filter: drop-shadow(0 15px 30px #ffffff33);
+  filter: drop-shadow(0 5px 30px #ffffff35);
   color: black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -565,9 +573,9 @@ h1 {
   flex-direction: column;
   justify-content: center;
   place-items: center;
-  border-radius: 15px;
-  background-color: rgba(222, 30, 62, 0.96);
-  box-shadow: 0px 0px 10px rgba(222, 30, 62, 0.96);
+  border-radius: 10px;
+  background-color: rgba(36, 89, 163, 0.96);
+  box-shadow: 0px 0px 10px rgba(19, 73, 109, 0.96);
   cursor: pointer;
 }
 
