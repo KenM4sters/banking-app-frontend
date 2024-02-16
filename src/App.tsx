@@ -34,8 +34,13 @@ const App = () => {
 
   // Set the form and homeInView states on the first render.
   useEffect(() => {
-    setFormstate(true);    
-  }, [])
+    setFormstate(true);
+    if(userEnabled == true) {
+      document.querySelector('.lock-icon')?.classList?.add('hide'); 
+    } else {
+      document.querySelector('.lock-icon')?.classList?.remove('hide'); 
+    } 
+  }, [userEnabled])
 
   // As the user is filling out the form, we need to update the formValues which
   // will eventually be passed to the POST request to set up a user account.
@@ -135,14 +140,18 @@ const App = () => {
       }
   }
 
+  const resetUser = () => {
+    setUserEnabled(false);   
+  }
+
   return (
     <>
       <main className='main-wrapper'>
         <Scrollbar />
         <Navbar toggleView={toggleHomeInView} />
+        <Header toggleView={toggleHomeInView} toggleForm={toggleForm} userEnabled={userEnabled} resetUser={resetUser}/>
         <Account data={data} />
         <div className='main-container'>
-          <Header toggleForm={toggleForm} userEnabled={userEnabled} />
           <Landing />
           <UserOptions toggleView={toggleHomeInView} />
           <About />

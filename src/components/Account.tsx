@@ -80,7 +80,7 @@ const Account = ({ data }) => {
           </div>
           <div className="account-card-values">
             <h1 className="account-card-details-value"> {data.cardNumber}</h1>
-            <h1 className="account-card-details-value"> {data.email} </h1>
+            <h1 className="account-card-details-value"> {data.name} </h1>
             <h1 className="account-card-details-value"> {data.cardBalance} </h1>
           </div>
         </div>
