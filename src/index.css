@@ -469,10 +469,31 @@ h1 {
   -webkit-box-decoration-break: clone;
 }
 
+.getting-started-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 1vh;
+}
+
 .getting-started-list-item {
+  position: relative;
   color: rgba(235, 235, 235, 0.9);
+  height: 5vh;
+  width: 40vw;
   font-weight: 500;
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.getting-started-list-item span {
+  position: absolute;
+  left: -7%;
+  top: -40%;
+  font-weight: 600;
+  font-size: calc(0.5rem + 3vh);
 }
 
 /*

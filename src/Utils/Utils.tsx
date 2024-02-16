@@ -60,15 +60,7 @@ export const quick_links = [
         link: "#",
     },
     {
-        name: "View Cards",
-        link: "#",
-    },
-    {
-        name: "Account",
-        link: "#",
-    },
-    {
-        name: "Account",
+        name: "Home",
         link: "#",
     },
 ]

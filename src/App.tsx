@@ -36,14 +36,14 @@ const App = () => {
 
   // As the user is filling out the form, we need to update the formValues which
   // will eventually be passed to the POST request to set up a user account.
-  const updateFormValues = (e) => {
+  const updateFormValues = (e):void => {
     // using the ...spread operator to break up an object.
     setFormValues({ ...formValues, [e.target.name]: e.target.value});
   }
 
   // function to call getGames from api/mappings.tsx which sends a GET request to the server.
   // Currently returns a list of game titles
-  const handleLogin = async (e) => {
+  const handleLogin = async (e):Promise<void> => {
     e.preventDefault();
     try {
       // get the data from the GET request.
@@ -58,7 +58,7 @@ const App = () => {
   }
 
   // if the form has the close-form class, then remove it and add display-form
-  const displayForm = () => {
+  const displayForm = ():void => {
     if(form?.classList?.contains('close-form')) {
       form?.classList?.remove('close-form');
     }
@@ -67,7 +67,7 @@ const App = () => {
   }
 
   // if the form has the display-form class, then remove it and add close-form
-  const closeForm = () => {
+  const closeForm = ():void => {
     if(form?.classList?.contains('display-form')) {
       form?.classList?.remove('display-form');
     }
@@ -77,7 +77,7 @@ const App = () => {
 
 
   // function to toggle whether the form should be open or not
-  const toggleForm = (show: boolean) => {show ? displayForm() : closeForm()};
+  const toggleForm = (show: boolean):void => {show ? displayForm() : closeForm()};
 
 
   // if userEnabled is true, then remove the lock icon on the account button but setting
@@ -89,7 +89,7 @@ const App = () => {
 
   // Adding an removing active/inactive classes when this funciton is called.
   // Those classes add different styling properties to indicatie whether it's active or not.
-  const toggleHomeInView = (lookToHome: boolean) => {
+  const toggleHomeInView = (lookToHome: boolean):void => {
     if(lookToHome) {
       homeButton?.classList.add('active');
       homeButton?.classList.remove('inactive');
@@ -110,7 +110,7 @@ const App = () => {
   }
 
 
-  const moveMainContainer = (left: boolean) => {
+  const moveMainContainer = (left: boolean):void => {
       if(left) {
         setHomeInPreviousView(homeInView);
         gsap.to('.main-container', {x: -1600});
@@ -159,7 +159,6 @@ const App = () => {
           </form>
         </div>
       </main>
-
     </>
   )
 }
