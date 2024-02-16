@@ -146,9 +146,11 @@ const App = () => {
 
   const updateUserBalance = async(email: string, transactionValue: number): Promise<void> => {
     const updatedUser: AxiosResponse = await updateUser(email, transactionValue);
-    console.log("updated user: " + updatedUser);
+    const newData = await loginUser(data)
+    console.log(transactionValue);
     
-    setData(updatedUser.data);
+    
+    setData(newData.data);
     toastSuccess('User updated!');
   }
 

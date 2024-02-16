@@ -8,7 +8,7 @@ const Account = ({ data, updateUserBalance }) => {
     email: "",
     password: "",
     cardBalance: 0
-  } as User);
+  } as User); 
 
   const [transactionBuffer, setTransactionBuffer] = useState({
     debit: 0,
@@ -21,7 +21,9 @@ const Account = ({ data, updateUserBalance }) => {
 
   const updateFormValues = (e):void => {
     e.preventDefault();
-    updateUserBalance(data.email, transactionBuffer.debit + (-1*transactionBuffer.credit))
+    console.log(transactionBuffer.debit);
+    var transactionValue = transactionBuffer.debit - transactionBuffer.credit
+    updateUserBalance(data.email, transactionValue)
   }
   
   useEffect(() => {
@@ -52,17 +54,17 @@ const Account = ({ data, updateUserBalance }) => {
             <h3 className="account-options-header debit"> Debit</h3>
             <div className="account-options-input-container">
               <span className="account-option-type">Amount</span>
-              <input className="account-options-input" placeholder="0.00" name="debit" id="debit" value={transactionBuffer.debit} onChange={updateTransactionBuffer}  /> 
+              <input className="account-options-input" name="debit" id="debit" value={transactionBuffer.debit} onChange={updateTransactionBuffer}  /> 
             </div>
-            <div className="account-options-submit-btn-container">
+            {/* <div className="account-options-submit-btn-container">
               <button className="account-options-submit-btn debit-btn" type="submit">Submit </button>
-            </div>
+            </div> */}
           </div>
           <div className="account-option-container">
             <h3 className="account-options-header credit"> Credit</h3>
             <div className="account-options-input-container">
               <span className="account-option-type">Amount</span>
-              <input className="account-options-input" name="credit" id="credit" value={transactionBuffer.credit} placeholder="0.00" onChange={updateTransactionBuffer}  /> 
+              <input className="account-options-input" name="credit" id="credit" value={transactionBuffer.credit} onChange={updateTransactionBuffer}  /> 
             </div>
             <div className="account-options-submit-btn-container">
               <button className="account-options-submit-btn credit-btn" type="submit"> Submit </button>
