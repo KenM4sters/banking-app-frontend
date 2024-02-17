@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
 import { Cog6ToothIcon } from "@heroicons/react/16/solid";
 import gsap from "gsap";
@@ -15,14 +15,16 @@ const Header = ({ toggleForm, userEnabled, resetUser, toggleView }) => {
   const toggleDevIcon = (show: boolean):void => {
     if (show) {
       gsap.to(".dev-view-icon", { rotateZ: "90deg" });
-      document.querySelector(".dev-review-wrapper").classList.remove("close-dev-review");
-      document.querySelector(".dev-review-wrapper").classList.add("open-dev-review");
+      gsap.to(".dev-review-wrapper", { opacity: 1, scale: 1})
     } else {
+      gsap.to(".dev-review-wrapper", { opacity: 0, scale: 0})
       gsap.to(".dev-view-icon", { rotateZ: "-90deg" });
-      document.querySelector(".dev-review-wrapper").classList.remove("open-dev-review");
-      document.querySelector(".dev-review-wrapper").classList.add("close-dev-review");
     }
   };
+
+  useEffect(() => {
+    gsap.to(".dev-review-wrapper", { opacity: 0, scale: 0})
+  }, [])
 
   return (
     <>
@@ -67,7 +69,15 @@ const Header = ({ toggleForm, userEnabled, resetUser, toggleView }) => {
             <h6 onClick={() => {toggleDevIcon(false)}}>close</h6>
           </div>
           <div className="dev-review-body">
-            <h3> Summary </h3>
+            <h3> What went well </h3>
+            <ul className="dev-review-summary">
+              <li>[point]</li>
+              <li>[point]</li>
+              <li>[point]</li>
+              <li>[point]</li>
+              <li>[point]</li>
+            </ul>
+            <h3> Areas to improve on </h3>
             <ul className="dev-review-summary">
               <li>[point]</li>
               <li>[point]</li>
