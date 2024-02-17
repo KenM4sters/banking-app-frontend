@@ -809,7 +809,7 @@ h1 {
   top: 5vh;
   width: 100vw;
   height: 90vh;
-  position: absolute;
+  position: fixed;
   z-index: 15;
   display: flex;
   flex-direction: column;
@@ -818,49 +818,61 @@ h1 {
 }
 
 .dev-review-container {
-  height: 100%;
-  width: 50%;
+  position: relative;
+  height: 75%;
+  width: 35%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   place-items: center;
-  background-color: rgb(25, 36, 73);
-  padding: 5vh;
+  background-color: rgb(30, 30, 30);
+  padding: 3vh;
   border-radius: 10px;
+  box-shadow: 0px 0px 55px rgba(33, 33, 33, 0.96);
 }
 
-.dev-review-header-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  place-items: center;
-  column-gap: 20vw;
-}
-
-.dev-review-header-container h3 {
-  color: rgba(230, 230, 230, 0.945);
-}
-
-.dev-review-header-container h6 {
-  color: rgba(245, 245, 245, 0.9);
-  font-size: calc(0.5rem + 1.0vh);
+.dev-review-close {
+  position: absolute;
+  color: rgba(232, 232, 232, 0.852);
+  left: 90%;
+  top: -1%;
   cursor: pointer;
+}
+
+.dev-review-header {
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), 25%, rgba(222, 30, 30, 0.96));
+  filter: drop-shadow(0 15px 30px #ff003733);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+  font-size: calc(0.5rem + 1.4vh);
 }
 
 .dev-review-body {
   width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start  ;
 }
 
 .dev-review-body h3 {
-  color: rgba(245, 245, 245, 0.9);
-  font-size: calc(0.5rem + 1.5vh);
+  background-image: linear-gradient(225deg, rgba(0, 98, 255, 0.96), 25%, rgba(222, 30, 30, 0.96));
+  filter: drop-shadow(0 15px 30px #ff003733);
+  color: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-box-decoration-break: clone;
+  font-size: calc(0.5rem + 0.8vh);
+}
+
+.dev-review-body p {
+  font-size: calc(0.25rem + 1.0vh)
 }
 
 .dev-review-summary {
   color: rgba(230, 230, 230, 0.945);
+  font-size: calc(0.25rem + 1.0vh);
   display: flex;
   flex-direction: column;
   justify-content: center;
