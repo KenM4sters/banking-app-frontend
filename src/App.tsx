@@ -121,7 +121,7 @@ const App = () => {
       homeButton?.classList.add('inactive');
       
       homeInView == true ? moveMainContainer(true) : null;
-    }
+    } 
   }
 
 
@@ -137,7 +137,7 @@ const App = () => {
         gsap.to('.main-container', {x: 0});
         gsap.to('.account-view-wrapper', {x: 1512});
         setHomeInView(true);
-      }
+      } 
   }
 
   const resetUser = () => {

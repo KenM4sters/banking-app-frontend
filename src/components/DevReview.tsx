@@ -16,19 +16,19 @@ const DevReview = ({toggleDevIcon}) => {
       <div className="dev-review-body">
         <h3 className='dev-review-body-header header-positive'> What went well </h3>
         <ul className="dev-review-summary">
-          <li>Integrating Axios to communicate with a Spring backend.</li>
-          <li>General use of core React hooks</li>
-          <li>Using GSAP to animate DOM elements</li>
-          <li>User authentication</li>
-          <li>Frontend UI - could use some tweaks, but generally quite unique and interesting</li>
+          <li>Integrating Axios to communicate with a Spring backend.✅</li>
+          <li>General use of core React hookshooks.✅</li>
+          <li>Using GSAP to animate DOM elements.✅</li>
+          <li>User authentication.✅</li>
+          <li>Frontend UI - could use some tweaks, but generally quite unique and interesting✅</li>
         </ul>
         <h3 className='dev-review-body-header header-negative'> Areas to improve on </h3>
         <ul className="dev-review-summary">
-          <li>Organising Stylesheets - debating on trying out SASS</li>
-          <li>fix Toastify to actually work...</li>
-          <li>A system to add new cards and make transactions on an individual basis to them</li>
-          <li>Allow users to report a problem</li>
-          <li>Add an object to the DB that stores the user's transactions so they can be recalled between sessions</li>
+          <li>Organising Stylesheets - debating on trying out SASS.🛠️</li>
+          <li>fix Toastify to actually work....🛠️</li>
+          <li>A system to add new cards and make transactions on an individual basis to them.🛠️</li>
+          <li>Allow users to report a problem.🛠️</li>
+          <li>Add an object to the DB that stores the user's transactions so they can be recalled between sessions.🛠️</li>
         </ul>
         <h3 className='dev-review-body-header header-neutral'> Final thoughts </h3>
         <p>
