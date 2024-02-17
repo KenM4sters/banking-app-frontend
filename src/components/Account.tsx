@@ -133,22 +133,22 @@ const Account = ({ data, updateUserBalance }) => {
       </div>
       <div className="transaction-history-wrapper">
         <div className="transaction-history-container">
-          <div className="transaction-history-headings">
-            <h6>Value</h6>
-            <h6>Type</h6>
-            <h6>Final Balance</h6>
-            <h6>Date</h6>
+          <div className="transaction-history-headings" style={{color: "Ivory"}}>
+            <h6 className="transaction-headings-cell">Value</h6>
+            <h6 className="transaction-headings-cell">Type</h6>
+            <h6 className="transaction-headings-cell">Final Balance</h6>
+            <h6 className="transaction-headings-cell">Date</h6>
           </div>
           {/* The first object doesn't contain anything, but will use up space in the form
               and cause data.isEnable to return false in it's own row, so we
               return null if the index is 0*/}
           {transactions.map((data, index) =>
-            index == 0 ? null : (
+            index == 0 || index > 7 ? null : (
               <div key={index} className="transaction-item">
-                <h6>{data.netAmount}</h6>
-                <h6>{`${data.isDebit}`}</h6>
-                <h6>{data.finalBalance}</h6>
-                <h6>{data.date}</h6>
+                <h6 className="transaction-item-cell" style={{color: data.isDebit == true ? "GreenYellow" : "red"}}>{data.netAmount}</h6>
+                <h6 className="transaction-item-cell" style={{color: data.isDebit == true ? "cyan" : "LightCoral"}}>{`${data.isDebit}`}</h6>
+                <h6 className="transaction-item-cell" style={{color: "white"}}>{data.finalBalance}</h6>
+                <h6 className="transaction-item-cell" style={{color: "Ivory"}}>{data.date}</h6>
               </div>
             )
           )}

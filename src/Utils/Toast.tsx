@@ -15,7 +15,7 @@ export function toastInfo(message: string) {
     toast.info(message, toastConfig);
 }
 
-export function toastSuccess(message: string) {
+export function toastSuccess(message: string) {    
     toast.success(message, toastConfig);
 }
 

@@ -13,6 +13,7 @@ import Landing from './components/Landing'
 import { User } from './Utils/types'
 import { toastInfo, toastSuccess } from './Utils/Toast'
 import { AxiosResponse } from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 
 const App = () => {
@@ -65,8 +66,7 @@ const App = () => {
         userDetails.data.enable == true ? setUserEnabled(true) : setUserEnabled(false);
         setData(userDetails.data);
         toggleForm(false);
-        toastInfo('user logged in');
-        console.log('logged in');
+        toast('logged in!');
       }
       
     } catch (e) {

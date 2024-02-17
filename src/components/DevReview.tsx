@@ -33,7 +33,7 @@ const DevReview = ({toggleDevIcon}) => {
         <h3 className='dev-review-body-header header-neutral'> Final thoughts </h3>
         <p>
           Besides a lack of more advanced features, the key take-away from this project is a need to find a more
-          appropraite way of styling DOM elements. Naming conventions are inconsistent, some of which are 
+          appropriate way of styling DOM elements. Naming conventions are inconsistent, some of which are 
           too vague, and the layout is at best a rough structure of header-body-footer stylings. 
         </p>
           <p>Even so, I think using SASS would be at least worth a shot for future frontend applications. </p>
