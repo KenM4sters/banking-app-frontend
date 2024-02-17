@@ -1,8 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { User } from "../Utils/types";
+import { Transaction } from "../Utils/types";
+import { TransactionType } from "../Utils/types";
 
 const Account = ({ data, updateUserBalance }) => {
 
+
+  // eventhough our form doesn't contain name,email, or password fields, we will need them
+  // to update the state of the user.
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -10,26 +15,36 @@ const Account = ({ data, updateUserBalance }) => {
     cardBalance: 0
   } as User); 
 
+  // an array of individual transaction objects, which we'll map over in the transaction section.
+  const [transactions, setTransactions] = useState([{} as Transaction]);
+
+  var transactionArrayBuffer = [{} as Transaction];
+
+
+  // to store the transcations and allow a net value to be calculated.
   const [transactionBuffer, setTransactionBuffer] = useState({
     debit: 0,
     credit: 0
   });
 
+  // udpates the buffer when the transaciton field inputs are changed.
   const updateTransactionBuffer = (e):void => {
+    // set the buffer to the updated field values.
     setTransactionBuffer({ ...transactionBuffer, [e.target.name]: e.target.value});
   }
 
   const updateFormValues = (e):void => {
+    // prevent default behaviour of submitting a form, otherwise the browser will refresh.
     e.preventDefault();
-    console.log(transactionBuffer.debit);
+    // calculate value to update the state of the balance by.
     var transactionValue = transactionBuffer.debit - transactionBuffer.credit
+    // call function to update the state of the balance.
     updateUserBalance(data.email, transactionValue)
   }
   
+  // set the form values to contain the data that's taken in from App.tsx to get the user details.
   useEffect(() => {
     setFormValues(data);
-    console.log(formValues);
-    
   }, []);  
 
   return (
@@ -84,8 +99,23 @@ const Account = ({ data, updateUserBalance }) => {
           </div>
         </div>
       </div>
-      <div className="transaction-history">
-        <h3 className="transaction-history-header">Transaction history</h3>
+      <div className="transaction-history-wrapper">
+        <div className="transaction-history-container">
+          <div className="transaction-history-headings">
+            <h6>Value</h6>
+            <h6>Type</h6>
+            <h6>Final Balance</h6>
+            <h6>Date</h6>
+          </div>
+          {transactions.map((data, index) => (
+            <div key={index} className="transaction-item">
+              <h6>{data.netAmount}</h6>
+              <h6>{data.isDebit}</h6>
+              <h6>{data.finalBalance}</h6>
+              <h6>{data.date}</h6>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

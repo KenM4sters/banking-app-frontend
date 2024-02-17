@@ -750,7 +750,7 @@ h1 {
   margin-bottom: 2vh;
 }
 
-.transaction-history {
+.transaction-history-wrapper {
   margin-top: 5vh;
   width: 60%;
   height: 40vh;
@@ -758,7 +758,27 @@ h1 {
   flex-direction: row;
   justify-content: center;
   place-items: center;
-  background-color: rgba(235, 235, 235, 0.9)
+  background-color: rgba(235, 235, 235, 0.9);
+  padding: 2vh;
+}
+
+.transaction-history-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  place-items: center;
+
+}
+
+.transaction-history-headings {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: start;
+  column-gap: 5vw;
+  place-items: center;
 }
 
 
