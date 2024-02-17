@@ -17,9 +17,11 @@ const Header = ({ toggleForm, userEnabled, resetUser, toggleView }) => {
     if (show) {
       gsap.to(".dev-view-icon", { rotateZ: "90deg" });
       gsap.to(".dev-review-wrapper", { opacity: 1, scale: 1})
+      gsap.to(".main-container", {opacity: 0.1});
     } else {
       gsap.to(".dev-review-wrapper", { opacity: 0, scale: 0})
       gsap.to(".dev-view-icon", { rotateZ: "-90deg" });
+      gsap.to(".main-container", {opacity: 1.0});
     }
   };
 

@@ -14,7 +14,7 @@ const DevReview = ({toggleDevIcon}) => {
       <h6 className="dev-review-close" onClick={() => {toggleDevIcon(false)}}>close</h6>
       <h1 className="dev-review-header">Dev Review</h1>
       <div className="dev-review-body">
-        <h3> What went well </h3>
+        <h3 className='dev-review-body-header header-positive'> What went well </h3>
         <ul className="dev-review-summary">
           <li>Integrating Axios to communicate with a Spring backend.</li>
           <li>General use of core React hooks</li>
@@ -22,7 +22,7 @@ const DevReview = ({toggleDevIcon}) => {
           <li>User authentication</li>
           <li>Frontend UI - could use some tweaks, but generally quite unique and interesting</li>
         </ul>
-        <h3> Areas to improve on </h3>
+        <h3 className='dev-review-body-header header-negative'> Areas to improve on </h3>
         <ul className="dev-review-summary">
           <li>Organising Stylesheets - debating on trying out SASS</li>
           <li>fix Toastify to actually work...</li>
@@ -30,7 +30,7 @@ const DevReview = ({toggleDevIcon}) => {
           <li>Allow users to report a problem</li>
           <li>Add an object to the DB that stores the user's transactions so they can be recalled between sessions</li>
         </ul>
-        <h3> Final thoughts </h3>
+        <h3 className='dev-review-body-header header-neutral'> Final thoughts </h3>
         <p>
           Besides a lack of more advanced features, the key take-away from this project is a need to find a more
           appropraite way of styling DOM elements. Naming conventions are inconsistent, some of which are 
