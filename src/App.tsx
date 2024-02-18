@@ -94,7 +94,15 @@ const App = () => {
 
 
   // function to toggle whether the form should be open or not
-  const toggleForm = (show: boolean):void => {show ? displayForm() : closeForm()};
+  const toggleForm = (show: boolean):void => {
+    if(show) {
+      displayForm();
+      gsap.to('.main-container', {opacity: 0.1});
+    } else {
+      closeForm();
+      gsap.to('.main-container', {opacity: 1});
+    }
+  }
 
 
   // if userEnabled is true, then remove the lock icon on the account button but setting
@@ -172,7 +180,7 @@ const App = () => {
         {/* Login Form */}
         <div className="login-container">
           <form className="login-form close-form" onSubmit={handleLogin}>
-              <XCircleIcon style={{cursor: 'pointer'}} onClick={() => {toggleForm(false)}} width={20} height={20}/>
+              <XCircleIcon  style={{cursor: 'pointer'}} onClick={() => {toggleForm(false)}} width={20} height={20}/>
               <h2>Login</h2>
               <div className="input-group">
                   <label>Name:</label>

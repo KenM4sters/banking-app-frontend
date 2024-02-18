@@ -45,7 +45,7 @@ const Account = ({ data, updateUserBalance }) => {
       netAmount: transactionValue,
       isDebit: transactionValue >= 0 ? true : false,
       finalBalance: data.cardBalance + transactionValue,
-      date: Date.now().toString(),
+      date: Date.now(),
     } as Transaction;
 
     // update transactions to include the new transaction object.
@@ -133,6 +133,7 @@ const Account = ({ data, updateUserBalance }) => {
       </div>
       <div className="transaction-history-wrapper">
         <div className="transaction-history-container">
+          <h3 className="transaction-history-placeholder">TRANSACTIONS</h3>
           <div
             className="transaction-history-headings"
             style={{ color: "Ivory" }}

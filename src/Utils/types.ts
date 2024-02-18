@@ -14,5 +14,5 @@ export type Transaction = {
     netAmount: number,
     isDebit: boolean,
     finalBalance: number
-    date: string,
+    date: number,
 }
