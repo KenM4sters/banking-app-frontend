@@ -15,6 +15,9 @@ const Account = ({ data, updateUserBalance }) => {
 
   // an array of individual transaction objects, which we'll map over in the transaction section.
   const [transactions, setTransactions] = useState([{} as Transaction]);
+  const [reversedTransactions, setReversedTransactions] = useState([
+    {} as Transaction,
+  ]);
 
   // to store the transcations and allow a net value to be calculated.
   const [transactionBuffer, setTransactionBuffer] = useState({
@@ -47,10 +50,10 @@ const Account = ({ data, updateUserBalance }) => {
 
     // update transactions to include the new transaction object.
     setTransactions([
-      // previous values
-      ...transactions,
       // append new values
       transactionItem,
+      // previous values
+      ...transactions,
     ]);
 
     // call function to update the state of the balance.
@@ -91,9 +94,6 @@ const Account = ({ data, updateUserBalance }) => {
                 onChange={updateTransactionBuffer}
               />
             </div>
-            {/* <div className="account-options-submit-btn-container">
-              <button className="account-options-submit-btn debit-btn" type="submit">Submit </button>
-            </div> */}
           </div>
           <div className="account-option-container">
             <h3 className="account-options-header credit"> Credit</h3>
@@ -133,22 +133,49 @@ const Account = ({ data, updateUserBalance }) => {
       </div>
       <div className="transaction-history-wrapper">
         <div className="transaction-history-container">
-          <div className="transaction-history-headings" style={{color: "Ivory"}}>
+          <div
+            className="transaction-history-headings"
+            style={{ color: "Ivory" }}
+          >
             <h6 className="transaction-headings-cell">Value</h6>
             <h6 className="transaction-headings-cell">Type</h6>
             <h6 className="transaction-headings-cell">Final Balance</h6>
             <h6 className="transaction-headings-cell">Date</h6>
           </div>
-          {/* The first object doesn't contain anything, but will use up space in the form
-              and cause data.isEnable to return false in it's own row, so we
-              return null if the index is 0*/}
+          {/* Because we're appending new items to the list at index 0, and the very first
+              object at the first render is always undefined (no transaction history), we need
+              to check if the transaction is == undefined before rendering the DOM elements for it. 
+              We'll also cap the number of transactions to 6 so that they fit nicely in the container.
+          */}
           {transactions.map((data, index) =>
-            index == 0 || index > 7 ? null : (
+            index >= 7 || data.netAmount == undefined ? null : (
               <div key={index} className="transaction-item">
-                <h6 className="transaction-item-cell" style={{color: data.isDebit == true ? "GreenYellow" : "red"}}>{data.netAmount}</h6>
-                <h6 className="transaction-item-cell" style={{color: data.isDebit == true ? "cyan" : "LightCoral"}}>{`${data.isDebit}`}</h6>
-                <h6 className="transaction-item-cell" style={{color: "white"}}>{data.finalBalance}</h6>
-                <h6 className="transaction-item-cell" style={{color: "Ivory"}}>{data.date}</h6>
+                <h6
+                  className="transaction-item-cell"
+                  style={{
+                    color: data.isDebit == true ? "GreenYellow" : "red",
+                  }}
+                >
+                  {data.netAmount}
+                </h6>
+                <h6
+                  className="transaction-item-cell"
+                  style={{
+                    color: data.isDebit == true ? "cyan" : "LightCoral",
+                  }}
+                >{`${data.isDebit}`}</h6>
+                <h6
+                  className="transaction-item-cell"
+                  style={{ color: "white" }}
+                >
+                  {data.finalBalance}
+                </h6>
+                <h6
+                  className="transaction-item-cell"
+                  style={{ color: "Ivory" }}
+                >
+                  {data.date}
+                </h6>
               </div>
             )
           )}
